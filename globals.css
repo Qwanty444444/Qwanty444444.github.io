@@ -1,0 +1,279 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #333, #555);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #555, #777);
+}
+
+/* 3D Transform utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Enhanced floating particle animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translateY(-20px) translateX(12px) rotate(90deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-8px) rotate(180deg);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translateY(-25px) translateX(15px) rotate(270deg);
+    opacity: 1;
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Cinematic light beam animation */
+@keyframes lightBeam {
+  0% {
+    opacity: 0.5;
+    transform: rotate(-10deg) scale(1.5);
+  }
+  33% {
+    opacity: 0.9;
+    transform: rotate(0deg) scale(1.8);
+  }
+  66% {
+    opacity: 0.7;
+    transform: rotate(10deg) scale(1.6);
+  }
+  100% {
+    opacity: 0.8;
+    transform: rotate(20deg) scale(2);
+  }
+}
+
+.animate-light-beam {
+  animation: lightBeam 15s ease-in-out infinite;
+}
+
+/* Enhanced glow effects */
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 40px rgba(255, 223, 87, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 80px rgba(255, 223, 87, 0.9);
+  }
+}
+
+.animate-glow {
+  animation: glow 5s ease-in-out infinite;
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition-property: transform, opacity, background-color, border-color, color, filter, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Navigation backdrop blur enhancement */
+@supports (backdrop-filter: blur(30px)) {
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(30px) saturate(200%);
+  }
+}
+
+/* Performance optimizations */
+.sticky {
+  will-change: transform;
+}
+
+.animate-float {
+  will-change: transform, opacity;
+}
+
+/* Ensure smooth scrolling performance */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for cleaner experience on mobile */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* 3D Card flip animation */
+.group:hover .transform-style-preserve-3d {
+  transform: rotateY(180deg);
+}
+
+/* Enhanced navigation hover effects */
+.group:hover .scale-0 {
+  transform: scale(1);
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  /* Скрыть десктопную навигацию на мобильных */
+  .fixed.top-8.right-8.z-40 {
+    display: none;
+  }
+
+  /* Улучшенная прокрутка на мобильных */
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Оптимизация для сенсорных устройств */
+  .group:hover .transform-style-preserve-3d {
+    transform: none;
+  }
+
+  /* Активация 3D эффекта по тапу на мобильных */
+  .group:active .transform-style-preserve-3d {
+    transform: rotateY(180deg);
+  }
+
+  /* Улучшенные размеры для мобильных */
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+
+  /* Адаптивные отступы */
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Улучшенная читаемость на мобильных */
+  .text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+
+  .text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+/* Планшетная адаптация */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Скрыть мобильную навигацию на планшетах */
+  .fixed.bottom-6.left-1\/2 {
+    display: none;
+  }
+
+  /* Адаптивные размеры для планшетов */
+  .text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+}
+
+/* Улучшения для сенсорных устройств */
+@media (hover: none) and (pointer: coarse) {
+  /* Замена hover эффектов на активные состояния */
+  .group:hover .opacity-0 {
+    opacity: 0;
+  }
+
+  .group:active .opacity-0 {
+    opacity: 1;
+  }
+
+  .group:hover .translate-y-full {
+    transform: translateY(100%);
+  }
+
+  .group:active .translate-y-full {
+    transform: translateY(0);
+  }
+
+  /* Улучшенные размеры кнопок для пальцев */
+  a,
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Оптимизация производительности для мобильных */
+@media (max-width: 768px) {
+  .animate-float {
+    animation-duration: 10s;
+  }
+
+  .backdrop-blur-xl {
+    backdrop-filter: blur(10px);
+  }
+
+  /* Упрощенные тени для лучшей производительности */
+  .shadow-2xl {
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Безопасные зоны для устройств с вырезами */
+@supports (padding: max(0px)) {
+  .fixed.top-8 {
+    top: max(2rem, env(safe-area-inset-top) + 1rem);
+  }
+
+  .fixed.bottom-6 {
+    bottom: max(1.5rem, env(safe-area-inset-bottom) + 1rem);
+  }
+}
